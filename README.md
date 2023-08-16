@@ -1,6 +1,12 @@
+# NOTE
+
+Based on [awesometic/realtek-r8125-dkms](https://github.com/awesometic/realtek-r8125-dkms), enable multi TX queue, enable RSS support, and disable ASPM. PVE 8 need to install `pve-headers` and `dkms` before installing `realtek-r8125-dkms`.
+
+基于[awesometic/realtek-r8125-dkms](https://github.com/awesometic/realtek-r8125-dkms)修改，启用TX多队列，启用RSS，禁用ASPM。PVE8用户在安装`realtek-r8125-dkms`前需要先安装`pve-headers`和`dkms`。
+
 # Realtek r8125 DKMS
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/awesometic/realtek-r8125-dkms?sort=semver&style=for-the-badge)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/devome/realtek-r8125-dkms?sort=semver&style=for-the-badge)
 
 This provides Realtek r8125 driver in DKMS way so that you can keep the latest driver even after the kernel upgrade.
 
@@ -32,11 +38,11 @@ Then enter the following command.
 sudo dpkg -i realtek-r8125-dkms*.deb
 ```
 
-> If multiple files selected by the wild card, you should type the specific version of the file.
->
-> ```bash
-> sudo dpkg -i realtek-r8125-dkms_9.011.01-1_amd64.deb
-> ```
+If multiple files selected by the wild card, you should type the specific version of the file.
+
+```bash
+sudo dpkg -i realtek-r8125-dkms_9.011.01-1_amd64.deb
+```
 
 If dependency error occurs, try to fix that with `apt` command.
 
@@ -117,7 +123,7 @@ Finally, reboot to take effect.
 You can build yourself this after installing some dependencies including `dkms`.
 
 ```bash
-sudo apt install devscripts debmake debhelper build-essential dkms
+sudo apt install debmake debhelper dkms dh-dkms
 ```
 
 ```bash
