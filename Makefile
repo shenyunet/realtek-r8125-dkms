@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-2.0-only
 ################################################################################
 #
-# r8125 is the Linux device driver released for Realtek 2.5Gigabit Ethernet
+# r8125 is the Linux device driver released for Realtek 2.5/5 Gigabit Ethernet
 # controllers with PCI-Express interface.
 #
-# Copyright(c) 2022 Realtek Semiconductor Corp. All rights reserved.
+# Copyright(c) 2023 Realtek Semiconductor Corp. All rights reserved.
 #
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the Free
@@ -30,28 +30,30 @@
 #  US6,570,884, US6,115,776, and US6,327,625.
 ################################################################################
 
-KFLAG := 2$(shell "$KVER" | sed -ne 's/^2\.[4]\..*/4/p')x
-BSRC ?= /lib/modules/$(shell uname -r)
+KFLAG := 2$(shell uname -r | sed -ne 's/^2\.[4]\..*/4/p')x
 
 all: clean modules install
 
 modules:
 ifeq ($(KFLAG),24x)
-	$(MAKE) -C src/ KVER=$(KVER) BASEDIR=$(BSRC) -f Makefile_linux24x modules
+	$(MAKE) -C src/ -f Makefile_linux24x modules
 else
-	$(MAKE) -C src/ KVER=$(KVER) BASEDIR=$(BSRC) modules
+	$(MAKE) -C src/ modules
 endif
 
 clean:
 ifeq ($(KFLAG),24x)
-	$(MAKE) -C src/ KVER=$(KVER) BASEDIR=$(BSRC) -f Makefile_linux24x clean
+	$(MAKE) -C src/ -f Makefile_linux24x clean
 else
-	$(MAKE) -C src/ KVER=$(KVER) BASEDIR=$(BSRC) clean
+	$(MAKE) -C src/ clean
 endif
 
-install: modules
+install:
 ifeq ($(KFLAG),24x)
-	$(MAKE) -C src/ KVER=$(KVER) BASEDIR=$(BSRC) -f Makefile_linux24x install
+	$(MAKE) -C src/ -f Makefile_linux24x install
 else
-	$(MAKE) -C src/ KVER=$(KVER) BASEDIR=$(BSRC) install
+	$(MAKE) -C src/ install
 endif
+
+
+

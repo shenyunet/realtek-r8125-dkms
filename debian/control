@@ -1,10 +1,10 @@
 Source: realtek-r8125-dkms
 Section: contrib/kernel
 Priority: optional
-Maintainer: Deokgyu Yang <secugyu@gmail.com>
+Maintainer: Evine Deng <evinedeng@hotmail.com>
 Build-Depends: debhelper (>=11~), dkms
 Standards-Version: 4.1.4
-Homepage: https://github.com/awesometic/realtek-r8125-dkms
+Homepage: https://github.com/devome/realtek-r8125-dkms
 
 Package: realtek-r8125-dkms
 Architecture: any
