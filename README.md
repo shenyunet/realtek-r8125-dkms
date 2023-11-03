@@ -28,52 +28,6 @@ Installation using the Debian package is recommended for the sake of getting the
 
 ### Debian package
 
-#### Released package file
-
-Download the latest Debian package from the Release tab on the Github repository.
-
-Then enter the following command.
-
-```bash
-sudo dpkg -i realtek-r8125-dkms*.deb
-```
-
-If multiple files selected by the wild card, you should type the specific version of the file.
-
-```bash
-sudo dpkg -i realtek-r8125-dkms_9.012.03-1_amd64.deb
-```
-
-If dependency error occurs, try to fix that with `apt` command.
-
-```bash
-sudo apt install --fix-broken
-```
-
-#### Launchpad PPA (Recommended)
-
-Add the Launchpad PPA.
-
-```bash
-sudo add-apt-repository ppa:awesometic/ppa
-```
-
-Then install the package using `apt` tool.
-
-```bash
-sudo apt install realtek-r8125-dkms
-```
-
-### autorun.sh
-
-Using the `autorun.sh` script that Realtek provides on their original driver package. This is **not installed as a DKMS**, only efforts to the current kernel.
-
-Download or clone this repository and move to the extracted directory, then run the script.
-
-```bash
-sudo ./autorun.sh
-```
-
 ### dkms-install.sh
 
 This script is from aircrack-ng team. You can install the DKMS module by a simple command.
@@ -81,6 +35,10 @@ This script is from aircrack-ng team. You can install the DKMS module by a simpl
 Download or clone this repository and move to the extracted directory, then run the script.
 
 ```bash
+
+apt install build-* dkms pve-headers-$(uname -r)
+git clone https://github.com/shenyunet/realtek-r8125-dkms.git
+cd realtek-r8125-dkms
 sudo ./dkms-install.sh
 ```
 
